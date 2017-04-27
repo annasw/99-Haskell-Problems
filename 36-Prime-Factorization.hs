@@ -17,7 +17,7 @@ isPrime n
 primeFactorization :: Int -> [(Int,Int)]
 primeFactorization x
     | x<=1 = error "n>=2 only please"
-    | otherwise = [ (p, n) | p <- [2..x], n <- (maxPow p x 1), x `mod` p == 0, isPrime p ]
+    | otherwise = [ (p, n) | p <- [2..x], x `mod` p == 0, isPrime p, n <- (maxPow p x 1) ]
     where maxPow p x n
               | x `mod` (p^n) /= 0 = [n-1]
               | otherwise = maxPow p x (n+1)
