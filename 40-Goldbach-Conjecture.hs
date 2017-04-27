@@ -16,6 +16,7 @@ isPrime n
 goldbach :: Int -> (Int, Int)
 goldbach x
     | x <= 2 || x `mod` 2 /= 0 = error "Give x > 2 and even please."
+    | x == 4 = (2, 2) -- edge case - the only case with 2 in the solution
     | otherwise = findFactors 3 x
     where findFactors n x
               | n>x = error ("The Goldbach Conjecture is false for x=" ++ show x)
