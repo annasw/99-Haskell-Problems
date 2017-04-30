@@ -1,12 +1,9 @@
--- a subfunction for the pack method
--- takes a list of chars and (initially) an empty list of strings,
--- returns the packed list of strings
-subPack :: [Char] -> [String] -> [String]
-subPack [] strs = strs
+subPack :: Eq a => [a] -> [[a]] -> [[a]]
+subPack [] ls = ls
 subPack (x:xs) [] = subPack xs [[x]]
-subPack (x:xs) strs
-    | x == (head $ last strs) = subPack xs ([i | i <- (init strs)] ++ [(last strs) ++ [head $ last strs]])
-    | otherwise = subPack xs (strs ++ [[x]])
+subPack (x:xs) ls
+    | x == (head $ last ls) = subPack xs ([i | i <- (init ls)] ++ [(last ls) ++ [head $ last ls]])
+    | otherwise = subPack xs (ls ++ [[x]])
 
-pack :: [Char] -> [String]
+pack :: Eq a => [a] -> [[a]]
 pack ls = subPack ls []
