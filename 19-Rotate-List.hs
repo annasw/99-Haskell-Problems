@@ -1,8 +1,7 @@
--- Positive rotates left, negative rotates right.
+-- Positive values of n rotate left, negatives rotate right.
 rotate :: [a] -> Int -> [a]
 rotate ls n
-    | len == 0 = ls
-    | n==0 = ls
+    | len == 0 || n == 0 = ls
     | n>0 = [ls!!i | i <- [num..len-1]] ++ [ls!!i | i <- [0..num-1]]
     | n<0 = [ls!!i | i <- [len-num..len-1]] ++ [ls!!i | i <- [0..len-num-1]]
     where num = abs(n) `mod` len
